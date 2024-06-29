@@ -1,0 +1,32 @@
+server:
+  port: 8443
+  servlet:
+    context-path: "/@project.artifactId@"
+  ssl:
+    enabled: true
+    key-store: "${KEY_STORE_FILE}"
+    key-store-password: "${KEY_STORE_PASSWORD}"
+    key-store-type: PKCS12
+    key-alias: "${KEY_STORE_ALIAS}"
+
+spring:
+  application:
+    name: "/@project.artifactId@"
+
+app:
+  oauth:
+    client-credential: "${OAUTH_CLIENT_CREDENTIAL}"
+    client-secret: "${OAUTH_CLIENT_SECRET}"
+    response-type: "${OAUTH_RESPONSE_TYPE}"
+    scope: "${OAUTH_SCOPE}"
+    redirect-uri: "${URL_SELF_HOST}/sample-oauth-code/v1/auth"
+
+  auth-server:
+    url: "${URL_AUTH_SERVER}"
+
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          openfeign: DEBUG
