@@ -1,7 +1,6 @@
 package dev.jefersoncardoso.sampleoauthcode.infra.http.feign;
 
 import feign.RequestInterceptor;
-import feign.RequestTemplate;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.context.annotation.Bean;
@@ -16,11 +15,7 @@ public class FeignConfig {
     public RequestInterceptor requestInterceptor() {
         return template -> {
             // Log headers
-            template.headers().forEach((key, values) -> {
-                values.forEach(value -> {
-                    logger.error("Header: " + key + " Value: " + value);
-                });
-            });
+            template.headers().forEach((key, values) -> values.forEach(value -> logger.error("Header: " + key + " Value: " + value)));
 
             // Log body
             if (template.body() != null) {
